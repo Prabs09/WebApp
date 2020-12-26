@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,6 @@ import com.Data.model.DataManager;
 import com.Data.model.Validation;
 
 
-@WebServlet("/controller/login")
 public class LoginController extends HttpServlet {
 	private boolean dbOK=false;
 	private String sterror;
@@ -48,7 +46,7 @@ public class LoginController extends HttpServlet {
 			user=new UserBean();
 			DataManager dm=new DataManager();
 			user=dm.getUserData(username, userpass);
-			if(!user.getFirstname().equals(null))
+			if(!user.getFirstname().equals(""))
 			{
 				dbOK=true;
 			}
@@ -63,13 +61,13 @@ public class LoginController extends HttpServlet {
 		if(dbOK)
 		{
 			session.setAttribute("userdata", user);
-			RequestDispatcher rd=request.getRequestDispatcher("/data.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("data.jsp");
 			rd.forward(request, response);
 		}
 		else
 		{
 			session.setAttribute("error", sterror);
-			RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
 			rd.forward(request,response);
 		}
 	}

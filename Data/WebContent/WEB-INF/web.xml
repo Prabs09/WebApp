@@ -10,7 +10,7 @@
   <servlet-class>com.Data.controller.LoginController</servlet-class>
   <init-param>
             <param-name>jdbcDriver</param-name>
-            <param-value>com.mysql.jdbc.Driver</param-value>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
         </init-param>
         <init-param>
             <param-name>dbURL</param-name>
@@ -25,9 +25,18 @@
             <param-value> </param-value>
   </init-param>
   </servlet>
+  <servlet>
+  	<servlet-name>Data</servlet-name>
+  	<jsp-file>/data.jsp</jsp-file>	
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Data</servlet-name>
+  	<url-pattern>/data.jsp</url-pattern>
+  </servlet-mapping>
   
   <servlet-mapping>
   <servlet-name>Login Controller</servlet-name>
-  <url-pattern>/controller/login</url-pattern>
+  <url-pattern>controller/login</url-pattern>
   </servlet-mapping>
 </web-app>
