@@ -38,6 +38,7 @@ public class DataManager {
 		}
 		catch (Exception e)
 		{
+			System.out.println("test");
 			e.printStackTrace();
 		}
 		return con;
@@ -61,13 +62,13 @@ public class DataManager {
 	{
 		UserBean user=new UserBean();
 		Connection con=getConnection();
-		if(con !=null)
+		if(con != null)
 		{
 			ResultSet rs= null;
 			PreparedStatement st= null;
 			try
 			{
-				String query="select (firstname,lastname,contact,email) from user where username=? and password=?";
+				String query="select firstname,lastname,contact,email from user where username=? and password=?";
 				st=con.prepareStatement(query);
 				st.setString(1, username);
 				st.setString(2, password);

@@ -41,10 +41,10 @@ margin-right: auto;
 	<td> <input type="password" name="pass"></td>
 </tr>
 <tr>
-	<td colspan="2" align="Right"> <button type="submit">submit</button></td>
+	<td colspan="2" align="Right"> <button type="submit" value="submit">submit</button></td>
 </tr>
 <tr>
-	<td colspan="2" align="Right"> <button type="reset">clear</button></td>
+	<td colspan="2" align="Right"> <button type="reset" value="reset">clear</button></td>
 </tr>
 </table>
 </form>

@@ -21,11 +21,11 @@ public class LoginController extends HttpServlet {
 	private UserBean user;
 	private static final long serialVersionUID = 1L;
 	private Validation val=new Validation();
+	private DataManager dm=new DataManager();
 	public void init(ServletConfig conf)
 	{
-		DataManager dm=new DataManager();
 		dm.setDbURL(conf.getInitParameter("dbURL"));
-		dm.setDbUserName(conf.getInitParameter("dbUsername"));
+		dm.setDbUserName(conf.getInitParameter("dbUserName"));
 		dm.setDbPassword(conf.getInitParameter("dbPassword"));
 		try
 		{
@@ -36,17 +36,19 @@ public class LoginController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String username=request.getParameter("username");
-		String userpass=request.getParameter("password");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		String username=request.getParameter("username");
+//		String userpass=request.getParameter("password");
+//		System.out.println(username);
+//		System.out.println(userpass);
+		String username="prabs";
+		String userpass="prabs123";
 		
 		if(val.validate(username, userpass))
 		{
 			user=new UserBean();
-			DataManager dm=new DataManager();
 			user=dm.getUserData(username, userpass);
-			if(!user.getFirstname().equals(""))
+			if(!user.getFirstname().equals(null))
 			{
 				dbOK=true;
 			}
@@ -61,13 +63,13 @@ public class LoginController extends HttpServlet {
 		if(dbOK)
 		{
 			session.setAttribute("userdata", user);
-			RequestDispatcher rd=request.getRequestDispatcher("data.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("/data.jsp");
 			rd.forward(request, response);
 		}
 		else
 		{
 			session.setAttribute("error", sterror);
-			RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+			RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
 			rd.forward(request,response);
 		}
 	}

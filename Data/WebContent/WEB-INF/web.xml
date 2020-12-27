@@ -14,7 +14,7 @@
         </init-param>
         <init-param>
             <param-name>dbURL</param-name>
-            <param-value>jdbc:mysql://localhost:3306/data</param-value>
+            <param-value>jdbc:mysql://localhost/data</param-value>
         </init-param>
         <init-param>
             <param-name>dbUserName</param-name>
@@ -33,10 +33,9 @@
   <servlet-mapping>
   	<servlet-name>Data</servlet-name>
   	<url-pattern>/data.jsp</url-pattern>
-  </servlet-mapping>
-  
+  </servlet-mapping>  
   <servlet-mapping>
   <servlet-name>Login Controller</servlet-name>
-  <url-pattern>controller/login</url-pattern>
+  <url-pattern>/controller/login</url-pattern>
   </servlet-mapping>
 </web-app>

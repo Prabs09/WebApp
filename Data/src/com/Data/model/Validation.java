@@ -5,7 +5,7 @@ public class Validation {
 		
 		public boolean validate(String username,String userpass)
 		{
-			if((username.length()> 0&& username.length()<= 8)||(userpass.length()> 8 && userpass.length()<15))
+			if((username.length()> 0 && username.length()<= 8)||(userpass.length()> 8 && userpass.length()<15))
 			{
 				return true;
 			}
