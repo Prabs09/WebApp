@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" %>
-<jsp:useBean id="user" class="com.Data.beans.UserBean" scope="session" /> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +7,7 @@
 <title>Your data</title>
 </head>
 <body>
+
 <table>
 <tr>
 	<th>First Name</th>
@@ -16,10 +16,10 @@
 	<th>Email</th>
 </tr>
 <tr>
-	<td><%= user.getFirstname() %> </td>
-	<td><%= user.getLastname() %> </td>
-	<td><%= user.getContact() %></td>
-	<td><%= user.getEmail() %></td>
+	<td> ${userdata.getFirstname()}  </td>
+	<td> ${userdata.getLastname() } </td>
+	<td> ${userdata.getContact() }</td>
+	<td> ${userdata.getEmail() }</td>
 </tr>
 </table>
 </body>

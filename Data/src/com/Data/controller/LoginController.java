@@ -36,13 +36,10 @@ public class LoginController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String username=request.getParameter("username");
-//		String userpass=request.getParameter("password");
-//		System.out.println(username);
-//		System.out.println(userpass);
-		String username="prabs";
-		String userpass="prabs123";
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	String username=request.getParameter("user");
+	String userpass=request.getParameter("pass");
+
 		
 		if(val.validate(username, userpass))
 		{
