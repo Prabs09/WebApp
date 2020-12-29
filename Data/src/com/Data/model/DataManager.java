@@ -112,7 +112,7 @@ public class DataManager {
 			PreparedStatement st=null;
 			try
 			{
-				String query="insert into user values ?,?,?,?,?,?";
+				String query="insert into user values (?,?,?,?,?,?)";
 				st=con.prepareStatement(query);
 				st.setString(1,data.getUsername() );
 				st.setString(2,data.getPassword() );

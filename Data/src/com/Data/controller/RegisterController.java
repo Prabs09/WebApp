@@ -59,5 +59,8 @@ public class RegisterController extends HttpServlet {
 		}
 		else
 		response.sendRedirect("index.jsp");
+		
+		RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
+		rd.forward(request, response);
 }
 }
