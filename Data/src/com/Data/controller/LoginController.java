@@ -3,7 +3,7 @@ package com.Data.controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +22,8 @@ public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Validation val=new Validation();
 	private DataManager dm=new DataManager();
-	public void init(ServletConfig conf)
-	{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ServletContext conf=getServletContext();
 		dm.setDbURL(conf.getInitParameter("dbURL"));
 		dm.setDbUserName(conf.getInitParameter("dbUserName"));
 		dm.setDbPassword(conf.getInitParameter("dbPassword"));
@@ -34,9 +34,7 @@ public class LoginController extends HttpServlet {
 		catch (Exception e)
 		{
 			e.printStackTrace();
-		}
-	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		}	
 	String username=request.getParameter("user");
 	String userpass=request.getParameter("pass");
 
@@ -67,7 +65,7 @@ public class LoginController extends HttpServlet {
 		{
 			session.setAttribute("error", sterror);
 			RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
-			rd.forward(request,response);
+			rd.include(request,response);
 		}
 	}
 

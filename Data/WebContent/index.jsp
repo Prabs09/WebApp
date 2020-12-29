@@ -48,5 +48,8 @@ margin-right: auto;
 </tr>
 </table>
 </form>
+<form action="register.jsp" method="post">
+<button type="submit" value="submit">Register</button>
+</form>
 </body>
 </html>

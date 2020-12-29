@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import com.Data.beans.UserBean;
 
@@ -101,5 +102,44 @@ public class DataManager {
 			}
 		}
 		return user;
+	}
+	public void setUserData(UserBean data)
+	{
+		Connection con=getConnection();
+		if(con != null)
+		{
+			//ResultSet rs=null;
+			PreparedStatement st=null;
+			try
+			{
+				String query="insert into user values ?,?,?,?,?,?";
+				st=con.prepareStatement(query);
+				st.setString(1,data.getUsername() );
+				st.setString(2,data.getPassword() );
+				st.setString(3,data.getFirstname() );
+				st.setString(4,data.getLastname() );
+				st.setString(5,data.getContact() );
+				st.setString(6,data.getEmail() );
+				st.executeUpdate();
+				//rs.next();
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+			finally
+			{
+				try 
+				{
+					//rs.close();
+					st.close();
+				} 
+				catch (SQLException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+			putConnection(con);			
+		}
 	}
 }
