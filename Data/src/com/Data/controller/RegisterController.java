@@ -1,6 +1,7 @@
 package com.Data.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -24,10 +25,11 @@ public class RegisterController extends HttpServlet {
 	private String lname;
 	private String contact;
 	private String email;
+	private int check=0;
 	Validation val=new Validation();
 	UserBean data=new UserBean();
 	DataManager dm=new DataManager();
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		ServletContext conf=getServletContext();
 		dm.setDbURL(conf.getInitParameter("dbURL"));
 		dm.setDbUserName(conf.getInitParameter("dbUserName"));
@@ -55,12 +57,13 @@ public class RegisterController extends HttpServlet {
 			data.setLastname(lname);
 			data.setContact(contact);
 			data.setEmail(email);
-			dm.setUserData(data);		
+			try{check=dm.setUserData(data);} catch(SQLException e) {e.printStackTrace();}
+			
 		}
 		else
 		response.sendRedirect("index.jsp");
-		
-		RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
+		request.setAttribute("chk", check);
+		RequestDispatcher rd=request.getRequestDispatcher("/registered.jsp");
 		rd.forward(request, response);
 }
 }

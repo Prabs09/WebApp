@@ -103,12 +103,12 @@ public class DataManager {
 		}
 		return user;
 	}
-	public void setUserData(UserBean data)
+	public int setUserData(UserBean data) throws SQLException
 	{
+		int rs=0;
 		Connection con=getConnection();
 		if(con != null)
 		{
-			//ResultSet rs=null;
 			PreparedStatement st=null;
 			try
 			{
@@ -120,8 +120,7 @@ public class DataManager {
 				st.setString(4,data.getLastname() );
 				st.setString(5,data.getContact() );
 				st.setString(6,data.getEmail() );
-				st.executeUpdate();
-				//rs.next();
+				rs=st.executeUpdate();
 			}
 			catch (Exception e)
 			{
@@ -129,17 +128,10 @@ public class DataManager {
 			}
 			finally
 			{
-				try 
-				{
-					//rs.close();
-					st.close();
-				} 
-				catch (SQLException e) 
-				{
-					e.printStackTrace();
-				}
+					st.close(); 
 			}
-			putConnection(con);			
+			putConnection(con);	
 		}
+		return rs;
 	}
 }

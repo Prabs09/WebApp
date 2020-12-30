@@ -24,9 +24,10 @@ margin-right: auto;
 	if(st!=null)
 	{
 	out.print(st);
+	session.removeAttribute("error");
 	}
 %>
-<form action="controller/login" method="post">
+<form action="<%=request.getContextPath() %>/login" method="post">
 <table>
 <tr>
 	<th bgcolor="red" align="Right"> Data </th>

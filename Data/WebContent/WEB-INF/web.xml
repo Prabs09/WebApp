@@ -44,7 +44,7 @@
   </servlet-mapping>  
   <servlet-mapping>
   <servlet-name>Login Controller</servlet-name>
-  <url-pattern>/controller/login</url-pattern>
+  <url-pattern>/login</url-pattern>
   </servlet-mapping>
  
   <context-param>
